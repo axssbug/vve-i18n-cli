@@ -109,7 +109,7 @@ const config = {
   outCsv: false,
 };
 
-Object.assign(config, program);
+Object.assign(config, program.opts());
 
 const CONFIG_JS_FILENAME = "vve-i18n-cli.config.js";
 

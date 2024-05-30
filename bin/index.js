@@ -106,7 +106,7 @@ const config = {
   // 忽略模块
   ignoreModuleIndexRules: [],
   // 匹配含有国际化文本的文件规则
-  i18nFileRules: ["**/*.+(vue|js)"],
+  i18nFileRules: ["**/*.+(vue|js|ts)"],
   // 不匹配含有国际化文本的文件规则
   ignoreI18nFileRules: [],
   // 国际化文本的正则表达式，正则中第一个捕获对象当做国际化文本
