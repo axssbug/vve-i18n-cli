@@ -16,7 +16,7 @@ function commaSeparatedList(value, split = ",") {
   return value.split(split).filter(item => item);
 }
 
-program
+const cmd = program
   .version(require('../package.json').version)
   .option("--cwd <path>", "工作目录")
   .option("--root-dir <path>", "国际文本所在的根目录")
@@ -93,6 +93,8 @@ program
   .option("--force-copy-index", "是否强制拷贝最新index.js")
   .parse(process.argv);
 
+
+
 const config = {
   // 工作目录
   cwd: ".",
@@ -155,7 +157,7 @@ const config = {
   forceCopyIndex: false
 };
 
-Object.assign(config, program);
+Object.assign(config, cmd.opts());
 
 const CONFIG_JS_FILENAME = "vve-i18n-cli.config.js";
 
