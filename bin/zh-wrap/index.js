@@ -40,7 +40,7 @@ const config = {
   // 是否取配置文件
   disableConfigFile: false,
   // 匹配含有国际化文本的文件规则
-  i18nFileRules: ["**/*.+(vue|js)"],
+  i18nFileRules: ["**/*.+(vue|js|ts|jsx|tsx|html)"],
   // 不匹配含有国际化文本的文件规则
   ignoreI18nFileRules: [],
   // 被忽略的前缀
@@ -66,25 +66,24 @@ const config = {
   vueI18nFuncName: "$t",
 };
 
-Object.assign(config, program.opts());
+// Object.assign(config, program.opts());
 
 const CONFIG_JS_FILENAME = "vve-i18n-cli.config.js";
 
 let absoluteCwd = path.resolve(config.cwd);
 
 // 优先判断是否需要读取文件
-if (!config.disableConfigFile) {
-  let configFilePath = path.join(absoluteCwd, CONFIG_JS_FILENAME);
-  if (config.config) {
-    configFilePath = path.resolve(config.config);
-  }
-  if (fs.existsSync(configFilePath)) {
-    const conf = loadConfig(configFilePath);
-    if (conf && conf.options && conf.options.zhWrap) {
-      Object.assign(config, conf.options.zhWrap, program);
-    }
+let configFilePath = path.join(absoluteCwd, CONFIG_JS_FILENAME);
+if (config.config) {
+  configFilePath = path.resolve(config.config);
+}
+if (fs.existsSync(configFilePath)) {
+  const conf = loadConfig(configFilePath);
+  if (conf && conf.options && conf.options.zhWrap) {
+    Object.assign(config, conf.options.zhWrap);
   }
 }
+console.log(3333, config);
 
 // 制定配置文件后，cwd在配置文件中定义，则cwd就需要重新获取
 if (!program.cwd) {
